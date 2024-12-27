@@ -46,5 +46,6 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
           repository: nikhildhakad55/eks
-          event-type: trigger-workflow02.yaml
+          event-type: trigger-workflow02
+          client-payload: '{"image_tag": "${{ github.run_id }}"}'  # Pass image_tag here
 
