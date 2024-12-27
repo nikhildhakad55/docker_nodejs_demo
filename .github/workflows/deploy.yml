@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Workflow02
-        uses: nikhildhakad55/repository-dispatch@v2
+        uses: peter-evans/repository-dispatch@v2
         with:
           token: ${{ secrets.PAT_TOKEN }}
           repository: nikhildhakad55/eks
