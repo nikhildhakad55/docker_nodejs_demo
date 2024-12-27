@@ -1,11 +1,11 @@
-name: Deploy to ECR
+name: workflow-1
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -37,10 +37,14 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: Trigger second workflow in Repo B
-      run: |
-        curl -X POST \
-          https://api.github.com/repos/nikhildhakad55/eks/dispatches \
-          -H "Accept: application/vnd.github.v3+json" \
-          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          -d '{"event_type": "deploy_to_eks", "client_payload": {"image_tag": "${{ github.run_id }}"}}'
+  trigger-workflow02:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Workflow02
+        uses: nikhildhakad55/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+          repository: nikhildhakad55/eks
+          event-type: trigger-workflow02
+
