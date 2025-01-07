@@ -3,7 +3,7 @@ name: Push to GitLab
 on:
   push:
     branches:
-      - master  # Trigger the action when changes are pushed to the master branch
+      - master  
 
 jobs:
   push_to_gitlab:
@@ -20,19 +20,12 @@ jobs:
 
       - name: Add GitLab remote
         run: |
-          git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
+          git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/testingnikhil.git
 
       - name: Push to GitLab
         run: |
-          # Clone the repository without --depth 1 to avoid shallow clone issues
-          git clone https://github.com/nikhildhakad55/docker_nodejs_demo.git  # Full clone
+          git clone https://github.com/nikhildhakad55/docker_nodejs_demo.git  
           cd docker_nodejs_demo
-          
-          # Add GitLab remote again, just in case
-          git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
-
-          # Ensure we're on the correct branch (master in this case)
-          git checkout master  # Make sure the branch is 'master', or change it to 'main' if needed
-
-          # Push to GitLab (pushing 'master' instead of 'main')
-          git push -uf gitlab master  # Push the master branch to GitLab (not main)
+          git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/testingnikhil.git
+          git checkout master 
+          git push -uf gitlab main
