@@ -24,7 +24,12 @@ jobs:
 
       - name: Push to GitLab
         run: |
-          git clone --depth 1 https://github.com/nikhildhakad55/docker_nodejs_demo.git # Fresh clone
+          git clone --depth 1 https://github.com/nikhildhakad55/docker_nodejs_demo.git  # Fresh clone
           cd docker_nodejs_demo
           git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
-          git push -uf gitlab main  # Push 'main' to GitLab
+
+          # Ensure we're on the correct branch (master or main)
+          git checkout master  # Replace 'master' with 'main' if that's your default branch
+
+          # Push to GitLab
+          git push -uf gitlab main  # Change 'master' to 'main' if that's the default branch
