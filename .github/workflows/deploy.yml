@@ -27,5 +27,5 @@ jobs:
           git clone https://github.com/nikhildhakad55/docker_nodejs_demo.git  
           cd docker_nodejs_demo
           git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/testingnikhil.git
-          git checkout master 
+          git checkout main
           git push -uf gitlab main
