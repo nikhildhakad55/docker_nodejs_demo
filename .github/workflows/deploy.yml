@@ -3,7 +3,7 @@ name: Push to GitLab
 on:
   push:
     branches:
-      - main   
+      - master  
 
 jobs:
   push_to_gitlab:
@@ -22,6 +22,6 @@ jobs:
       run: |
         git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
 
-    - name: Push to GitLab
+    - name: Push code to GitLab
       run: |
-        git push gitlab main
+        git push gitlab master:main  # Push 'master' branch from GitHub to 'main' branch in GitLab
