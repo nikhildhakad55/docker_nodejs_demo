@@ -26,10 +26,10 @@ jobs:
       run: |
         git fetch gitlab main  # Fetch the latest changes from the GitLab 'main' branch
 
-    - name: Attempt to merge GitLab main branch into GitHub master
+    - name: Rebase GitHub master branch onto GitLab main branch (resolve non-fast-forward)
       run: |
-        git merge gitlab/main --allow-unrelated-histories || exit 0  # If merge fails, exit with status 0
+        git rebase gitlab/main  # Rebase the 'master' branch on top of the 'main' branch from GitLab
 
     - name: Push code to GitLab
       run: |
-        git push gitlab master:main  # Push 'master' branch from GitHub to 'main' branch in GitLab
+        git push gitlab master:main --force  # Force push 'master' branch from GitHub to 'main' branch in GitLab
