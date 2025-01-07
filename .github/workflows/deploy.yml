@@ -13,6 +13,10 @@ jobs:
     - name: Checkout GitHub repository
       uses: actions/checkout@v2
 
+    - name: Rename the local branch to 'main'
+      run: |
+        git branch -M main  # Rename the branch to 'main'
+
     - name: Set up Git
       run: |
         git config --global user.name "GitHub Actions"
@@ -22,14 +26,10 @@ jobs:
       run: |
         git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
 
-    - name: Fetch latest changes from GitLab (main branch)
+    - name: Push to GitHub (origin)
       run: |
-        git fetch gitlab main  # Fetch the latest changes from the GitLab 'main' branch
+        git push -uf origin main  # Push 'main' to GitHub
 
-    - name: Rebase GitHub master branch onto GitLab main branch (resolve non-fast-forward)
+    - name: Push to GitLab
       run: |
-        git rebase gitlab/main  # Rebase the 'master' branch on top of the 'main' branch from GitLab
-
-    - name: Push code to GitLab
-      run: |
-        git push gitlab master:main --force  # Force push 'master' branch from GitHub to 'main' branch in GitLab
+        git push -uf gitlab main  # Push 'main' to GitLab
