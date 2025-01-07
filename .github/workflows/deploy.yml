@@ -24,4 +24,4 @@ jobs:
 
     - name: Push code to GitLab
       run: |
-        git push gitlab master:main  # Push 'master' branch from GitHub to 'main' branch in GitLab
+        git push gitlab main  # Push 'master' branch from GitHub to 'main' branch in GitLab
