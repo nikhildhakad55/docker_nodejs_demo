@@ -3,8 +3,7 @@ name: Push to GitLab
 on:
   push:
     branches:
-      - master  
-
+      - master 
 jobs:
   push_to_gitlab:
     runs-on: ubuntu-latest
@@ -22,6 +21,14 @@ jobs:
       run: |
         git remote add gitlab https://gitlab-ci-token:${{ secrets.GITLAB_TOKEN }}@gitlab.com/nikhildhakad55/demo.git
 
+    - name: Fetch latest changes from GitLab (main branch)
+      run: |
+        git fetch gitlab main  # Fetch the latest changes from the GitLab 'main' branch
+
+    - name: Merge GitLab main branch into GitHub master
+      run: |
+        git merge gitlab/main --allow-unrelated-histories  # Merge the remote 'main' branch into the 'master' branch
+
     - name: Push code to GitLab
       run: |
-        git push gitlab main  # Push 'master' branch from GitHub to 'main' branch in GitLab
+        git push gitlab master:main  # Push 'master' branch from GitHub to 'main' branch in GitLab
