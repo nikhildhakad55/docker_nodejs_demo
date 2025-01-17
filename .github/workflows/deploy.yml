@@ -37,14 +37,36 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-  trigger-workflow02:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Workflow02
-        uses: peter-evans/repository-dispatch@v2
-        with:
-          token: ${{ secrets.PAT_TOKEN }}
-          repository: nikhildhakad55/eks
-          event-type: trigger-workflow02
-          client-payload: '{"image_tag": "${{ github.run_id }}"}'  # Pass image_tag here
+    - name: Send Success Email
+      if: success()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: 'Success: tsting Service Successfully Deployed'
+        body: |
+          <b>Testing</b><br/>
+          Project: ${{ github.workflow }}<br/>
+          Build Number: ${{ github.run_number }}<br/>
+        to: nikhil.dhakad@antiersolutions.com, pradeep.kumar@antiersolutions.com, gowtham@antiersolutions.com, shyamanand.kumar@antiersolutions.com
+        from: no-reply@coindecasa.com
+        content_type: text/html
+
+    - name: Send Failure Email
+      if: failure()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 587
+        username: ${{ secrets.EMAIL_USERNAME }}
+        password: ${{ secrets.EMAIL_PASSWORD }}
+        subject: 'Failure: testing Not Deployed'
+        body: |
+          <b>testing</b><br/>
+          Project: ${{ github.workflow }}<br/>
+          Build Number: ${{ github.run_number }}<br/>
+        to: pradeep.kumar@antiersolutions.com, shyamanand.kumar@antiersolutions.com. nikhil.dhakad@antiersolutions.com
+        from: no-reply@coindecasa.com
+        content_type: text/html
