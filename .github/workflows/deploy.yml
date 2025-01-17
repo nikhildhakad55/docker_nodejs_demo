@@ -51,11 +51,12 @@ jobs:
         uses: dawidd6/action-send-mail@v4
         with:
           server_address: smtp-relay.brevo.com
-          server_port: 465  # Changed to SSL port 465
-          secure: true  # Ensures using SSL (not STARTTLS)
+          server_port: 465  # SSL port
+          secure: true  # SSL/TLS secure connection
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: GitHub Actions job result
           to: nikhil.dhakad@antiersolutions.com
           from: noreply@coindecasa.com
+          reply_to: noreply@coindecasa.com  # Ensure the reply-to is valid
           body: Build job of ${{ github.repository }} completed successfully!
