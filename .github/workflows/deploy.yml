@@ -43,7 +43,7 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: noreply@coindecasa.com  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
+        username: ${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
         password: ${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
         subject: 'Success: testing Service github Successfully Deployed'
         body: |
@@ -63,8 +63,8 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: noreply@coindecasa.com #${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
-        password: K8JYG0cNUzOdSwCE #${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
+        username: ${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
+        password: ${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
         subject: 'Failure: testing Not Deployed'
         body: |
           <b>testing</b><br/>
