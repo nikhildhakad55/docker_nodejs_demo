@@ -63,7 +63,7 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: 82c2aa001@smtp-brevo.com #${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
+        username: noreply@coindecasa.com #${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
         password: K8JYG0cNUzOdSwCE #${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
         subject: 'Failure: testing Not Deployed'
         body: |
