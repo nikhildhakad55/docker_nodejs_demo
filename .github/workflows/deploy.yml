@@ -43,15 +43,15 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}  # Your SMTP username (e.g., 82c2aa001@smtp-brevo.com)
-        password: ${{ secrets.EMAIL_PASSWORD }}  # Your SMTP password
+        username: ${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
+        password: ${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
         subject: 'Success: testing Service Successfully Deployed'
         body: |
           <b>Testing</b><br/>
           Project: ${{ github.workflow }}<br/>
           Build Number: ${{ github.run_number }}<br/>
         to: nikhil.dhakad@antiersolutions.com, pradeep.kumar@antiersolutions.com, shyamanand.kumar@antiersolutions.com
-        from: noreply@coindecasa.com  # Correct sender email that has been authenticated
+        from: noreply@coindecasa.com  # Ensure this email is verified in Brevo
         html_body: |
           <b>Testing</b><br/>
           Project: ${{ github.workflow }}<br/>
@@ -63,15 +63,15 @@ jobs:
       with:
         server_address: smtp-relay.brevo.com
         server_port: 587
-        username: ${{ secrets.EMAIL_USERNAME }}  # Your SMTP username (e.g., 82c2aa001@smtp-brevo.com)
-        password: ${{ secrets.EMAIL_PASSWORD }}  # Your SMTP password
+        username: ${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
+        password: ${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
         subject: 'Failure: testing Not Deployed'
         body: |
           <b>testing</b><br/>
           Project: ${{ github.workflow }}<br/>
           Build Number: ${{ github.run_number }}<br/>
         to: pradeep.kumar@antiersolutions.com, shyamanand.kumar@antiersolutions.com, nikhil.dhakad@antiersolutions.com
-        from: noreply@coindecasa.com  # Correct sender email that has been authenticated
+        from: noreply@coindecasa.com  # Ensure this email is verified in Brevo
         html_body: |
           <b>testing</b><br/>
           Project: ${{ github.workflow }}<br/>
