@@ -50,7 +50,7 @@ jobs:
           <b>Testing</b><br/>
           Project: ${{ github.workflow }}<br/>
           Build Number: ${{ github.run_number }}<br/>
-        to: nikhil.dhakad@antiersolutions.com, pradeep.kumar@antiersolutions.com, gowtham@antiersolutions.com, shyamanand.kumar@antiersolutions.com
+        to: nikhil.dhakad@antiersolutions.com, pradeep.kumar@antiersolutions.com, shyamanand.kumar@antiersolutions.com
         from: noreply@coindecasa.com
         html_body: |
           <b>Testing</b><br/>
