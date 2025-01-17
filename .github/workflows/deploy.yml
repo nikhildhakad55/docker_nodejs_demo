@@ -45,7 +45,7 @@ jobs:
         server_port: 587
         username: ${{ secrets.EMAIL_USERNAME }}  # Your Brevo SMTP username (e.g., 82c2aa001@smtp-brevo.com)
         password: ${{ secrets.EMAIL_PASSWORD }}  # Your Brevo SMTP password
-        subject: 'Success: testing Service Successfully Deployed'
+        subject: 'Success: testing Service github Successfully Deployed'
         body: |
           <b>Testing</b><br/>
           Project: ${{ github.workflow }}<br/>
